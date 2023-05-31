@@ -6,7 +6,7 @@ const {height} = Dimensions.get("window");
 const LoginScreen = () => {
     return (
         <LinearGradient colors={["#192821", "#261213"]} style={{height: "100%"}}>
-            <Text>Hello!</Text>
+
         </LinearGradient>
     );
 }
