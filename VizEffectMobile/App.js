@@ -4,7 +4,7 @@ import LoginScreen from "./pages/LoginScreen";
 export default function App() {
   return (
       <View style={{flex: 1}}>
-        <LoginScreen />
+          <LoginScreen />
       </View>
   );
 };
