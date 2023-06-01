@@ -3,9 +3,15 @@ import LoginScreen from "./pages/LoginScreen";
 
 export default function App() {
   return (
-      <View style={{flex: 1}}>
+      <View style={styles.container}>
           <LoginScreen />
       </View>
   );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});
 
