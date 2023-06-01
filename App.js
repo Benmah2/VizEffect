@@ -1,22 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import LandingScreen from './pages/LandingScreen';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Text>Hi</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  // This would usually be replaced with some navigation library
+  const showLandingScreen = true;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (showLandingScreen) {
+    return <LandingScreen />;
+  }
+
+  // Show some other component or screen
+  return <View />;
+}
