@@ -1,5 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button, ScrollView, Image, SafeAreaView, ScrollViewComponent} from 'react-native';
+import {
+    StyleSheet,
+    Text,
+    View,
+    Button,
+    ScrollView,
+    Image,
+    SafeAreaView,
+    ScrollViewComponent,
+    TouchableOpacity
+} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import MostPopular from "../components/MostPopular";
 import YourDownloads from "../components/YourDownloads";
@@ -62,23 +72,20 @@ const LandingScreen = ({navigation}) => {
                 </View>
             </ScrollView>
 
-            <Text style={styles.stats}>Weekly Statistics</Text>
-            <Text style={styles.stats}>Week 32</Text>
+                <View style={{flexDirection: "row", gap: "160"}}>
+                    <Text style={styles.title}>Weekly Statistics</Text>
+                    <Text style={styles.title}>Week 32</Text>
+                </View>
 
-            <Text style={styles.stats}>AVG Views: 32</Text>
-            <Text style={styles.stats}>Subscribers gained this period: 45</Text>
+                <View style={styles.card}>
+                    <Text style={styles.stats}>AVG Views:</Text>
+                    <Text style={styles.statsNumber}>32</Text>
+                </View>
 
-            <View style={styles.seeMoreContainer}>
-                <Text style={styles.seeMoreText}>See more</Text>
-            </View>
-
-            <View style={styles.navigationBar}>
-                {[1, 2, 3, 4, 5].map((number) => (
-                    <View style={[styles.circleButton, number === 3 && styles.circleButtonLarge]} key={number}>
-                        <Text style={styles.buttonNumber}>{number}</Text>
-                    </View>
-                ))}
-            </View>
+                <View style={styles.card}>
+                    <Text style={styles.stats}>Subscribers gained this period:</Text>
+                    <Text style={styles.statsNumber}>45</Text>
+                </View>
             </View>
         </LinearGradient>
     );
@@ -98,35 +105,22 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     title: {
-        fontSize: 12,
+        fontSize: 15,
         marginHorizontal: 10,
         marginTop: 20,
         fontWeight: "400",
         color: "#E1E1E1"
     },
-    buttonContainer: {
-        flexDirection: 'row',
-        marginTop: 10,
-        marginLeft: 10,
-    },
-    buttonItem: {
-        marginRight: 10,
-        backgroundColor: "rgba(92, 88, 87, 0.28)",
-        padding: 20,
-        borderRadius: 10,
-    },
-    buttonItemLarge: {
-        marginRight: 10,
-        width: 100,
-        height: 40,
-    },
     stats: {
         fontSize: 18,
         margin: 10,
+        fontWeight: 600,
+        color: "#E1E1E1",
     },
-    seeMoreContainer: {
-        alignSelf: 'flex-end',
-        marginRight: 10,
+    statsNumber: {
+        fontSize: 18,
+        color: "#91D3CD",
+        fontWeight: 600,
     },
     seeMoreText: {
         fontSize: 12,
@@ -160,6 +154,20 @@ const styles = StyleSheet.create({
     buttonNumber: {
         fontSize: 14,
     },
+    card: {
+        marginTop: 20,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingTop: 8,
+        paddingBottom: 8,
+        marginBottom: 20,
+        backgroundColor: "rgba(92, 88, 87, 0.28)",
+        borderRadius: 10,
+        height: 70,
+        width: "93%",
+
+    }
 });
 
 export default LandingScreen;

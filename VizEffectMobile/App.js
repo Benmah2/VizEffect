@@ -1,9 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import LoginScreen from "./pages/LoginScreen";
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import LandingScreen from "./pages/LandingScreen";
-import MainContainer from "./Navigation/MainContainer";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +19,6 @@ export default function App() {
                   component={LandingScreen}
               />
           </Stack.Navigator>
-      <MainContainer />
       </NavigationContainer>
   );
 };
