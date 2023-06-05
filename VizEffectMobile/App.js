@@ -4,14 +4,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import LandingScreen from "./pages/LandingScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import Auth from "./Auth"
+import TabNavigation from "./components/TabNavigation"
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-      <Auth />
+      <TabNavigation />
       /*<NavigationContainer>
           <Stack.Navigator screenOptions={{headerShown: false}}>
               <Stack.Screen

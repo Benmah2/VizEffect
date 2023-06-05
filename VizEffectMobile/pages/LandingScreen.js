@@ -87,13 +87,14 @@ const LandingScreen = ({navigation}) => {
                     <Text style={styles.statsNumber}>45</Text>
                 </View>
 
-                <LinearGradient style={{marginBottom: 20, borderRadius: 10}} colors={["#EA7F74", "#D9574A"]}>
+                {/*<LinearGradient style={{marginBottom: 20, borderRadius: 10}} colors={["#EA7F74", "#D9574A"]}>
                     <TouchableOpacity style={styles.button} onPress={() => {
                         navigation.navigate("Login")
                     }}>
                         <Text style={{paddingRight: 5, color: "#E1E1E1", fontSize: 15, fontWeight: 700, textAlign: "center"}}>Sign Out</Text>
                     </TouchableOpacity>
-                </LinearGradient>
+                </LinearGradient>*/}
+
             </View>
         </LinearGradient>
     );
