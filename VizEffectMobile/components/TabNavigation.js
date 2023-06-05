@@ -7,6 +7,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import ChoosePlatform from '../pages/ChoosePlatform';
 import LoginScreen from "../pages/LoginScreen";
 import LandingScreen from "../pages/LandingScreen";
+import Studio from "../pages/Studio";
 import {LinearGradient} from "expo-linear-gradient";
 
 const Stack = createNativeStackNavigator();
@@ -34,7 +35,11 @@ function SettingsScreen() {
 
 function CustomTabBar({ state, descriptors, navigation }) {
     const navigateToScreen = (routeName) => {
-        navigation.navigate(routeName);
+        if (routeName === 'Studio') {
+            navigation.navigate('Studio');
+        } else {
+            navigation.navigate(routeName);
+        }
     };
 
     return (
@@ -69,6 +74,8 @@ function CustomTabBar({ state, descriptors, navigation }) {
         </View>
     );
 }
+
+
 
 function TabNavigation() {
     return (
@@ -122,11 +129,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        backgroundColor: "#261213",
+        backgroundColor: "rgb(38,18,19)",
         height: 90,
+        padding: 10
     },
     tabBarIcon: {
         marginBottom: 5,
+        backgroundColor: "#621122",
+        borderWidth: 5,
+        borderColor: "transparent",
+        padding: 10,
+        borderRadius: 30,
+        overflow: "hidden"
     },
 });
 

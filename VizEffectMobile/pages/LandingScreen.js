@@ -3,12 +3,8 @@ import {
     StyleSheet,
     Text,
     View,
-    Button,
     ScrollView,
     Image,
-    SafeAreaView,
-    ScrollViewComponent,
-    TouchableOpacity
 } from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import MostPopular from "../components/MostPopular";
