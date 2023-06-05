@@ -14,23 +14,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const {height} = Dimensions.get("window");
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const handleLogin = () => {
-        // Perform login logic here using the email and password values
-        console.log('Logging in...');
-        console.log('Email:', email);
-        console.log('Password:', password);
-    };
-
-    const handleSignup = () => {
-        // Perform signup logic here using the email and password values
-        console.log('Signing up...');
-        console.log('Email:', email);
-        console.log('Password:', password);
-    };
 
     return (
         <LinearGradient colors={["#192821", "#261213"]} style={{height: "100%"}}>
@@ -46,7 +32,7 @@ const LoginScreen = () => {
                     <Text style={{fontSize: 18, fontWeight: "500", color: "#E1E1E1", marginBottom: 20,}} >Email</Text>
                 <View style={styles.inputContainer}>
                     <AntDesign name="mail" size={30} style={{color: "#E1E1E1", marginRight: 10, marginLeft: 10 }} />
-                    <TextInput placeholder="Email adress" style={styles.input} keyboardType="email-adress" />
+                    <TextInput placeholder="Email address" style={styles.input} keyboardType="email-address" />
                 </View>
 
                 {/* Password input */}
@@ -65,7 +51,9 @@ const LoginScreen = () => {
 
                 {/* Login btn */}
                 <LinearGradient style={{marginBottom: 20, borderRadius: 10}} colors={["#EA7F74", "#D9574A"]}>
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
+                <TouchableOpacity style={styles.button} onPress={() => {
+                    navigation.navigate("Landing")
+                }}>
                     <Text style={{paddingRight: 5, color: "#E1E1E1", fontSize: 15, fontWeight: 700, textAlign: "center"}}>Login</Text>
                 </TouchableOpacity>
                 </LinearGradient>
@@ -74,12 +62,12 @@ const LoginScreen = () => {
 
                 {/* Sign up btn */}
                 <LinearGradient style={{marginBottom: 30, borderRadius: 10}} colors={["#EA7F74", "#D9574A"]}>
-                    <TouchableOpacity style={styles.button} onPress={() => {}}>
+                    <TouchableOpacity style={styles.button} onPress={() => {
+
+                    }}>
                         <Text style={{paddingRight: 5, color: "#E1E1E1", fontSize: 15, fontWeight: 700, textAlign: "center"}}>Sign up</Text>
                     </TouchableOpacity>
                 </LinearGradient>
-
-
             </View>
         </LinearGradient>
     );
@@ -91,7 +79,6 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         alignItems: "center",
-
     },
     image: {
         top: 40,
@@ -106,7 +93,6 @@ const styles = StyleSheet.create({
     logoBilde: {
         width: 130,
         height: 25,
-
     },
     inputContainer: {
         flexDirection: "row",
