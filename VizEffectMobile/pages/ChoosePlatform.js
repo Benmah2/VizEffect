@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, Text, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, Image, Text, TouchableOpacity, Modal } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
-import { useNavigation } from '@react-navigation/native';
 
-const ChoosePlatform = () => {
+
+const ChoosePlatform = ({navigation}) => {
     const [selectedPlatform, setSelectedPlatform] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
-    const navigation = useNavigation();
 
     const handlePlatformPress = (platform) => {
         if (platform === "tiktok") {
@@ -20,12 +19,11 @@ const ChoosePlatform = () => {
         if (selectedPlatform !== "tiktok") {
             setModalVisible(true);
         } else {
-            // Navigate to another screen
-
+            navigation.navigate('Record');
         }
     };
 
-    const handleCancelPress = () => {
+    const handleOkPress = () => {
         setModalVisible(false);
     };
 
@@ -38,19 +36,19 @@ const ChoosePlatform = () => {
                 <View style={styles.row}>
                     <TouchableOpacity
                         onPress={() => handlePlatformPress("twitch")}
-                        style={[styles.platformButton, selectedPlatform === "twitch" && styles.selectedPlatform]}
+                        style={[selectedPlatform === "twitch"]}
                     >
                         <Image style={styles.image} source={require('../assets/images/twitch.png')} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => handlePlatformPress("youtube")}
-                        style={[styles.platformButton, selectedPlatform === "youtube" && styles.selectedPlatform]}
+                        style={[selectedPlatform === "youtube"]}
                     >
                         <Image style={styles.image} source={require('../assets/images/youtube.png')} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => handlePlatformPress("tiktok")}
-                        style={[styles.platformButton, selectedPlatform === "tiktok" && styles.selectedPlatform]}
+                        style={[selectedPlatform === "tiktok"]}
                     >
                         <View style={selectedPlatform === "tiktok" ? styles.tiktokImageWrapper : null}>
                             <Image style={styles.image} source={require('../assets/images/tik-tok.png')} />
@@ -61,13 +59,13 @@ const ChoosePlatform = () => {
                 <View style={styles.row}>
                     <TouchableOpacity
                         onPress={() => handlePlatformPress("instagram")}
-                        style={[styles.platformButton, selectedPlatform === "instagram" && styles.selectedPlatform]}
+                        style={[selectedPlatform === "instagram"]}
                     >
                         <Image style={styles.image} source={require('../assets/images/instagram.png')} />
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => handlePlatformPress("twitter")}
-                        style={[styles.platformButton, selectedPlatform === "twitter" && styles.selectedPlatform]}
+                        style={[selectedPlatform === "twitter"]}
                     >
                         <Image style={styles.image} source={require('../assets/images/twitter.png')} />
                     </TouchableOpacity>
@@ -91,7 +89,7 @@ const ChoosePlatform = () => {
                         <View style={styles.modalContainer}>
                             <View style={styles.modalContent}>
                                 <Text style={styles.modalText}>You have to choose a platform to sync and go live.</Text>
-                                <TouchableOpacity onPress={handleCancelPress}>
+                                <TouchableOpacity onPress={handleOkPress}>
                                     <Text style={styles.modalButton}>OK</Text>
                                 </TouchableOpacity>
                             </View>
@@ -149,7 +147,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     buttonText: {
-        color: '#E1E1E1',
+        color: '#252525',
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center',
