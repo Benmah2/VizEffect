@@ -9,6 +9,7 @@ import LoginScreen from "../pages/LoginScreen";
 import LandingScreen from "../pages/LandingScreen";
 import Studio from "../pages/Studio";
 import {LinearGradient} from "expo-linear-gradient";
+import LiveStream from "../pages/LiveStream";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -85,7 +86,6 @@ function CustomTabBar({ state, descriptors, navigation }) {
     );
 }
 
-
 // Tab Navigation component
 function TabNavigation() {
     return (
@@ -93,6 +93,7 @@ function TabNavigation() {
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Choose" component={ChoosePlatform}/>
+                <Stack.Screen name="Live" component={LiveStream} />
                 <Stack.Screen name="Landing">
                     {() => (
                         <Tab.Navigator
