@@ -1,10 +1,9 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import LoginScreen from "./pages/LoginScreen";
-import {NavigationContainer} from '@react-navigation/native';
+import {SafeAreaViewComponent, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import LandingScreen from "./pages/LandingScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import TabNavigation from "./components/TabNavigation"
+import LoginScreen from "./pages/LoginScreen";
+import { SafeAreaView} from "react-native";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
