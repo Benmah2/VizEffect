@@ -19,7 +19,7 @@ const ChoosePlatform = ({navigation}) => {
         if (selectedPlatform !== "tiktok") {
             setModalVisible(true);
         } else {
-            navigation.navigate('Record');
+            navigation.navigate('Live');
         }
     };
 
