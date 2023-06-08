@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import {LinearGradient} from "expo-linear-gradient";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Studio = ({navigation}) => {
     return (
@@ -16,16 +18,22 @@ const Studio = ({navigation}) => {
                 <Text style={styles.panelHeader}>Stream panel</Text>
             </View>
             <View style={styles.row}>
-                <Image style={styles.image} source={require('../assets/images/Chat-img.png')} />
-                <Image style={styles.image} source={require('../assets/images/Chat-img.png')} />
-                <Image style={styles.image} source={require('../assets/images/Chat-img.png')} />
-                <Image style={styles.image} source={require('../assets/images/Chat-img.png')} />
+                <View style={{alignItems: "center", justifyContent: "center", backgroundColor: "#7D608C", height: 90, width: 90, borderRadius: 50}} >
+                    <Image source={require("../assets/images/FlowIcs.png")} style={{height: 50, width: 40}} resizeMode="contain"></Image>
+                </View>
+                <Image style={styles.image} source={require('../assets/images/Chat.png')} />
+                <View style={{alignItems: "center", justifyContent: "center", backgroundColor: "#DF737D", height: 90, width: 90, borderRadius: 50}} >
+                    <MaterialIcons name={"multitrack-audio"} size={50} color={"white"}/>
+                </View>
+                <View style={{alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255, 255, 255, 0.28)", height: 90, width: 90, borderRadius: 50}} >
+                    <Ionicons name={"add-outline"} size={50} color={"white"}/>
+                </View>
             </View>
-            <View>
-                <Text style={styles.flowicsDownloadsTxt}>Flowics Downloads</Text>
-                <Text style={styles.chatTxt}>Chat</Text>
-                <Text style={styles.soundTxt}>Sound</Text>
-                <Text style={styles.addTxt}>Add</Text>
+            <View style={{flexDirection: "row", marginTop: 15, gap: 65, marginLeft: 40}}>
+                <Text style={styles.iconText}>Flowics</Text>
+                <Text style={styles.iconText}>Chat</Text>
+                <Text style={styles.iconText}>Sound</Text>
+                <Text style={styles.iconText}>Add</Text>
             </View>
             <View>
                 <Text style={styles.downloadsTxt}>Your Flowics Downloads</Text>
@@ -83,41 +91,15 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     image: {
-        width: windowWidth / 4 - 20,
-        height: windowWidth / 4 - 20,
+        width: 90,
+        height: 90,
         borderRadius: (windowWidth / 4 - 20) / 2,
-        backgroundColor: 'brown',
         bottom: 300,
         margin: 0,
+        backgroundColor: "rgba(255, 255, 255, 0.28)"
     },
-    flowicsDownloadsTxt: {
-        position: 'relative',
-        top: 70,
-        maxWidth: 80,
-        left: 25,
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    chatTxt: {
-        position: 'relative',
-        top: 40,
-        left: 123,
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    soundTxt: {
-        position: 'relative',
-        top: 22,
-        left: 203,
-        fontSize: 14,
-        fontWeight: 'bold',
-    },
-    addTxt: {
-        position: 'relative',
-        top: 5,
-        left: 295,
-        fontSize: 14,
-        fontWeight: 'bold',
+    iconText: {
+        color: "#E1E1E1",
     },
     downloadsTxt: {
         position: 'relative',
