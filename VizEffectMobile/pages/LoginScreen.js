@@ -35,7 +35,7 @@ const LoginScreen = ({ navigation }) => {
             setPasswordError('Password must contain at least one special character');
         }
 
-        if (!emailError && !passwordError) {
+        if (email !== '' && password !== '' && emailError === '' && passwordError === '') {
             navigation.navigate('Landing');
         }
     };
@@ -181,8 +181,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#252525',
-        fontSize: 18,
-        fontWeight: 'bold',
+        fontSize: 15,
+        fontWeight: '700',
         textAlign: 'center',
     },
     orText: {
