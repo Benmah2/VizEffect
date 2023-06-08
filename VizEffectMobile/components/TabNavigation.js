@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -14,25 +14,35 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function HomeScreen() {
+    const navigation = useNavigation();
     return <LinearGradient colors={["#192821", "#261213"]} style={{height: "100%"}}><View style={styles.screenContainer} /></LinearGradient>;
 }
 
 function StudioScreen() {
+    const navigation = useNavigation();
+
     return <LinearGradient colors={["#192821", "#261213"]} style={{height: "100%"}}><View style={styles.screenContainer} /></LinearGradient>;
 }
 
 function RecordScreen() {
+    const navigation = useNavigation();
+
     return <LinearGradient colors={["#192821", "#261213"]} style={{height: "100%"}}><View style={styles.screenContainer} /></LinearGradient>;
 }
 
 function StatsScreen() {
+    const navigation = useNavigation();
+
     return <LinearGradient colors={["#192821", "#261213"]} style={{height: "100%"}}><View style={styles.screenContainer} /></LinearGradient>;
 }
 
 function SettingsScreen() {
+    const navigation = useNavigation();
+
     return <LinearGradient colors={["#192821", "#261213"]} style={{height: "100%"}}><View style={styles.screenContainer} /></LinearGradient>;
 }
 
+// Custom Tab Bar component
 function CustomTabBar({ state, descriptors, navigation }) {
     const navigateToScreen = (routeName) => {
         if (routeName === 'Studio') {
@@ -76,12 +86,13 @@ function CustomTabBar({ state, descriptors, navigation }) {
 }
 
 
-
+// Tab Navigation component
 function TabNavigation() {
     return (
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login" component={LoginScreen} />
+                <Stack.Screen name="Choose" component={ChoosePlatform}/>
                 <Stack.Screen name="Landing">
                     {() => (
                         <Tab.Navigator
@@ -95,12 +106,12 @@ function TabNavigation() {
                             />
                             <Tab.Screen
                                 name="Studio"
-                                component={ChoosePlatform}
+                                component={Studio}
                                 options={{ tabBarIconName: 'ios-camera' }}
                             />
                             <Tab.Screen
                                 name="Record"
-                                component={RecordScreen}
+                                component={Studio}
                                 options={{ tabBarIconName: 'ios-ellipse-sharp' }}
                             />
                             <Tab.Screen
