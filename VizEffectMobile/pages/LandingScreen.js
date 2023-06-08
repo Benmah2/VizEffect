@@ -117,13 +117,13 @@ const styles = StyleSheet.create({
         color: "#E1E1E1"
     },
     stats: {
-        fontSize: 18,
+        fontSize: 15,
         margin: 10,
         fontWeight: 600,
         color: "#E1E1E1",
     },
     statsNumber: {
-        fontSize: 18,
+        fontSize: 15,
         color: "#91D3CD",
         fontWeight: 600,
     },
@@ -143,19 +143,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginHorizontal: 10,
     },
-    circleButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: 'lightgray',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    circleButtonLarge: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-    },
     buttonNumber: {
         fontSize: 14,
     },
@@ -171,7 +158,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         height: 70,
         width: "93%",
-
     }
 });
 
