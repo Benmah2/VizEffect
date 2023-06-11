@@ -1,33 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity, Modal } from 'react-native';
+import { useAuthRequest, makeRedirectUri } from 'expo-auth-session';
+import * as WebBrowser from 'expo-web-browser';
 import { LinearGradient } from "expo-linear-gradient";
+import axios from 'axios';
 
+WebBrowser.maybeCompleteAuthSession();
 
-const ChoosePlatform = ({navigation}) => {
-    const [selectedPlatform, setSelectedPlatform] = useState(null);
-    const [modalVisible, setModalVisible] = useState(false);
+const discovery = {
+  authorizationEndpoint: 'https://id.twitch.tv/oauth2/authorize',
+  tokenEndpoint: 'https://id.twitch.tv/oauth2/token',
+  revocationEndpoint: 'https://id.twitch.tv/oauth2/revoke',
+};
 
-    const handlePlatformPress = (platform) => {
-        if (platform === "tiktok") {
-            setSelectedPlatform(platform);
-        } else {
-            setSelectedPlatform(null);
-        }
-    };
+const TwitchClientId = 'LEGG_TIL_TWITCH_CLIENT_ID'; //Legg til Twitch Client Id
+const TwitchClientSecret = 'LEGG_TIL_SECRET_CODE'; //Legg til Twitch hemmelighet. 
 
-    const handleSyncButtonPress = () => {
-        if (selectedPlatform !== "tiktok") {
-            setModalVisible(true);
-        } else {
-            navigation.navigate('Live');
-        }
-    };
+const ChoosePlatform = ({ navigation }) => {
+  const [selectedPlatform, setSelectedPlatform] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [request, response, promptAsync] = useAuthRequest(
+    {
+      clientId: TwitchClientId,
+      clientSecret: TwitchClientSecret,
+      scopes: ['user:read:email'],
+      redirectUri: makeRedirectUri({ useProxy: true }),
+    },
+    discovery
+  );
 
-    const handleOkPress = () => {
-        setModalVisible(false);
-    };
+  useEffect(() => {
+    if (response?.type === 'success') {
+      const { code } = response.params;
 
+      axios
+        .post('https://id.twitch.tv/oauth2/token', null, {
+          params: {
+            client_id: TwitchClientId,
+            client_secret: TwitchClientSecret,
+            code,
+            grant_type: 'authorization_code',
+            redirect_uri: makeRedirectUri({ useProxy: true }),
+          },
+        })
+        .then((response) => {
+          const accessToken = response.data.access_token;
+
+          axios
+            .get('https://api.twitch.tv/helix/users', {
+              headers: {
+                'Client-ID': TwitchClientId,
+                Authorization: `Bearer ${accessToken}`,
+              },
+            })
+            .then((response) => {
+              const user = response.data.data[0];
+              const username = user.login;
+              const email = user.email;
+              console.log('Username:', username);
+              console.log('Email:', email);
+              navigation.navigate('Live');
+            })
+            .catch((error) => {
+              console.log('Error getting user data:', error);
+            });
+        })
+        .catch((error) => {
+          console.log('Error exchanging code for access token:', error);
+        });
+    }
+  }, [response, navigation]);
+
+  const handlePlatformPress = (platform) => {
+    setSelectedPlatform(platform);
+  };
+//This handles the Sync Button so that it will navigate to the Live
+  const handleSyncButtonPress = () => {
+    if (selectedPlatform === 'twitch') {
+      promptAsync();
+    } else if (selectedPlatform === 'tiktok') {
+      navigation.navigate('Live');
+    } else {
+      setModalVisible(true);
+    }
+  };
+
+  const handleOkPress = () => {
+    setModalVisible(false);
+  };
+
+  //Stylingen
     return (
+        
         <LinearGradient colors={['#192821', '#261213']} style={{ height: '100%' }}>
             <View style={styles.container}>
                 <Image style={styles.logo} source={require('../assets/images/logo.png')} />
