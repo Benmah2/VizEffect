@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from 'react';
+import { View, TextInput, StyleSheet, Text, Button } from 'react-native';
+import axios from 'axios';
+
+const TextBoxComponent = () => {
+  const [response, setResponse] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [monitorString, setMonitorString] = useState("");
+
+  const handlePress = (deviceName) => {
+    setMonitorString(deviceName);
+    console.log(monitorString);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://localhost:5001/api/Viz');
+      setResponse(response.data);
+      setLoading(false);
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const postURL = 'http://localhost:5000/api/Viz/DISPLAY';
+  const postData = {
+    "monitor": "\\\\.\\DISPLAY1"
+  };
+  const postConfig = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+  
+  const startStream = async () => {
+    try {
+      const response = await axios.post(postURL, postData, postConfig);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+return (
+  <View style={styles.container}>
+    {/*<TextInput style={styles.textInput} value="hi" editable={false} />*/}
+    {loading ? (
+      <Text style={styles.responseText}>Loading...</Text>
+    ) : (
+      <>
+      {response.map((item, index) => (
+      <Button
+        style={styles.responseText}
+        key={index}
+        title={item.deviceName}
+        onPress={() => handlePress(item.deviceName)}
+      />
+    ))}
+    <Button onPress={startStream}></Button>
+      </>
+    )}
+  </View>
+);
+
+};
+
+export default TextBoxComponent; 
