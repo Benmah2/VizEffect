@@ -50,10 +50,9 @@ const StudioLiveStream = ({navigation}) => {
 
             <Modal visible={modalVisible} animationType="slide" onRequestClose={closeModal}>
                 <View style={styles.modalContainer}>
-                    {/* Add the content for the modal */}
                     <Text style={styles.modalText}>This is the modal content</Text>
                     <TouchableOpacity style={styles.modalButton} onPress={closeModal}>
-                        <Text style={styles.modalButtonText}>Close Modal</Text>
+                        <Text>Close Modal</Text>
                     </TouchableOpacity>
                 </View>
             </Modal>

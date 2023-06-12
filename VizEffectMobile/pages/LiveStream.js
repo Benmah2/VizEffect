@@ -86,7 +86,7 @@ const LiveStream = ({navigation}) => {
                 <Modal visible={showPopup} transparent={true} animationType="fade">
                     <TouchableWithoutFeedback onPress={closePopup}>
                         <View style={styles.popupOverlay}>
-                            <View style={styles.popup}>
+                            <View>
                                 <Text style={styles.popupHeader}>Invite</Text>
                                 <Text style={styles.popupCancel}>x</Text>
                                 <Image
@@ -99,9 +99,11 @@ const LiveStream = ({navigation}) => {
                                     style={styles.bluetoothImage}
                                 />
                                 <Text style={styles.popupText}>VirtualVoyager</Text>
-                                <TouchableOpacity style={styles.sendButton} onPress={() => {sharedLiveStreamClick()}}>
+                                <LinearGradient style={styles.sendButton} colors={['#EA7F74', '#D9574A']}>
+                                <TouchableOpacity onPress={() => {sharedLiveStreamClick()}}>
                                     <Text style={styles.popupSend}>Send</Text>
                                 </TouchableOpacity>
+                                </LinearGradient>
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     logoContainer: {
-        top: -10,
+        top: -40,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: "center",
@@ -236,22 +238,21 @@ const styles = StyleSheet.create({
         top: "17%",
     },
     popupCancel: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
         left: "60%",
         bottom: "0%",
     },
     sendButton: {
-        backgroundColor: 'orange',
-        width: 60,
+        width: 65,
         borderRadius: 25,
         paddingVertical: 5,
         bottom: "18%",
         left: "43%",
     },
     popupSend: {
-        color: 'white',
-        fontSize: 14,
+        color: '#252525',
+        fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center',
     },
@@ -259,7 +260,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         bottom: "4%",
-        right: "15%"
+        right: "15%",
+        fontWeight: "bold"
     },
     bluetoothImage: {
         backgroundColor: 'white',

@@ -10,6 +10,8 @@ import LandingScreen from "../pages/LandingScreen";
 import Studio from "../pages/Studio";
 import {LinearGradient} from "expo-linear-gradient";
 import LiveStream from "../pages/LiveStream";
+import SharedLiveStream from "../pages/SharedLiveStream";
+import EndStream from "../pages/EndStream";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -92,8 +94,10 @@ function TabNavigation() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login" component={LoginScreen} />
-                <Stack.Screen name="Choose" component={ChoosePlatform}/>
+                <Stack.Screen name="Choose" component={ChoosePlatform} />
                 <Stack.Screen name="Live" component={LiveStream} />
+                <Stack.Screen name="SharedLiveStream" component={SharedLiveStream} />
+                <Stack.Screen name="EndStream" component={EndStream} />
                 <Stack.Screen name="Landing">
                     {() => (
                         <Tab.Navigator
