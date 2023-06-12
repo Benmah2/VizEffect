@@ -136,7 +136,7 @@ const ChoosePlatform = ({ navigation }) => {
                         <Text style={styles.buttonText}>Sync and go live</Text>
                     </TouchableOpacity>
                 </LinearGradient>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {navigation.navigate("Studio")}}>
                     <Text style={styles.cancelText}>Cancel</Text>
                 </TouchableOpacity>
                 {selectedPlatform !== "tiktok" && (
