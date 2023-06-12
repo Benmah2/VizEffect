@@ -11,6 +11,7 @@ axios: Dette er en veldig populær pakke for å gjøre HTTP-kall fra JavaScript.
 
 
 This is the install codecode:
+
 npm install react react-native
 
 npm install expo-auth-session
