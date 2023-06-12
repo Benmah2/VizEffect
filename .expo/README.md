@@ -7,7 +7,13 @@ axios: Dette er en veldig populær pakke for å gjøre HTTP-kall fra JavaScript.
 
 This is the install codecode:
 npm install react react-native
+
 npm install expo-auth-session
+
 npm install expo-web-browser
+
 npm install expo-linear-gradient
+
 npm install axios
+
+NOTE: Man må ha en HTTPS kobling. Den jeg har brukt er Ngrok. Men du kan finne andre som fungerer også :) 
