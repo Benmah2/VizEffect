@@ -21,11 +21,9 @@ const EndStream = ({navigation}) => {
                     />*/}
                 </View>
             </View>
-            <LinearGradient style={styles.button} colors={['#EA7F74', '#D9574A']}>
-            <TouchableOpacity  onPress={() => {navigation.navigate("Home")}}>
+            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate("Home")}}>
                 <Text style={styles.buttonText}>See all stats</Text>
             </TouchableOpacity>
-            </LinearGradient>
         </View>
         </LinearGradient>
     );

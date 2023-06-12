@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-    View,
-    Image,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Modal,
-    TouchableWithoutFeedback,
-    Dimensions
-} from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity, Modal, TouchableWithoutFeedback } from 'react-native';
 import {LinearGradient} from "expo-linear-gradient";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import Ionicons from "react-native-vector-icons/Ionicons";
 
 const SharedLiveStream = ({navigation}) => {
     const [showPopup, setShowPopup] = useState(false);
@@ -40,12 +29,11 @@ const SharedLiveStream = ({navigation}) => {
                 style={styles.logo}
                 resizeMode="contain"
             />
-            <View style={{alignItems: "center", justifyContent: "flex-end", flexDirection: "row", gap: 25, marginBottom: 5,}}>
-                <Text style={{color: "#E1E1E1", fontSize: 18, fontWeight: "bold"}}>Live</Text>
-                <Text style={{color: "#E1E1E1", fontSize: 18, fontWeight: "bold"}}>0:16</Text>
+            <View style={styles.header}>
+                <Text style={styles.liveText}>Live</Text>
                 <Image
                     source={require('../assets/images/Record.png')}
-                    resizeMode="contain"
+                    style={styles.recordingImage}
                 />
             </View>
             <View style={styles.imageContainer}>
@@ -74,6 +62,20 @@ const SharedLiveStream = ({navigation}) => {
                         </View>
                     </View>
                 )}
+                {showPopup && (
+                    <Modal
+                        visible={showPopup}
+                        transparent={true}
+                        animationType="none">
+                        <TouchableWithoutFeedback onPress={closePopup}>
+                            <View style={styles.popupContainer}>
+                                <View style={styles.popup}>
+                                    <Text style={styles.popupText}>Stream ended with VirtualVoyager</Text>
+                                </View>
+                            </View>
+                        </TouchableWithoutFeedback>
+                    </Modal>
+                )}
                 <Image
                     source={require('../assets/images/Twitch-tornado-img.png')}
                     style={styles.twitchTornadoImage}
@@ -95,62 +97,58 @@ const SharedLiveStream = ({navigation}) => {
                 />
             </View>
             <View style={styles.imageRow}>
-                <View style={{alignItems: "center", justifyContent: "center", backgroundColor: "#7D608C", height: 70, width: 70, borderRadius: 50}} >
-                    <Image source={require("../assets/images/FlowIcs.png")} style={{height: 40, width: 30}} resizeMode="contain"></Image>
-                </View>
-                <Image style={styles.image} source={require('../assets/images/Chat.png')} />
-                <View style={{alignItems: "center", justifyContent: "center", backgroundColor: "#DF737D", height: 70, width: 70, borderRadius: 50}} >
-                    <MaterialIcons name={"multitrack-audio"} size={50} color={"white"}/>
-                </View>
-                <View style={{alignItems: "center", justifyContent: "center", backgroundColor: "rgba(255, 255, 255, 0.28)", height: 70, width: 70, borderRadius: 50}} >
-                    <Ionicons name={"add-outline"} size={50} color={"white"}/>
-                </View>
+                <Text style={styles.effectsHeaderText}>Effects</Text>
+                <Image
+                    source={require('../assets/images/Chat.png')}
+                    style={styles.effectImage}
+                />
+                <Image
+                    source={require('../assets/images/Soundeffect.png')}
+                    style={styles.effectImage}
+                />
+                <Image
+                    source={require('../assets/images/Effects.png')}
+                    style={styles.effectImage}
+                />
+                <Image
+                    source={require('../assets/images/Sync-icon.png')}
+                    style={styles.effectImage}
+                />
             </View>
-            {showPopup && (
-                <Modal
-                    visible={showPopup}
-                    transparent={true}
-                    animationType="none">
-                    <TouchableWithoutFeedback onPress={closePopup}>
-                        <View style={styles.popupContainer}>
-                            <View>
-                                <Text style={styles.popupText}>Stream ended with VirtualVoyager</Text>
-                            </View>
-                        </View>
-                    </TouchableWithoutFeedback>
-                </Modal>
-            )}
-            <View style={{flexDirection: "row", marginTop: 15, gap: 60, marginLeft: 15}}>
-                <Text style={styles.iconText}>Flowics</Text>
-                <Text style={styles.iconText}>Chat</Text>
-                <Text style={styles.iconText}>Sound</Text>
-                <Text style={styles.iconText}>Add</Text>
+            <TouchableOpacity style={styles.button} onPress={() => {navigation.navigate("EndStream")}}>
+                <Text style={styles.buttonText}>End stream</Text>
+            </TouchableOpacity>
+            <View>
+                <Text style={styles.chatText}>Chat</Text>
+                <Text style={styles.soundText}>Sound</Text>
+                <Text style={styles.effectsText}>Effects</Text>
+                <Text style={styles.cameraSyncText}>Camera Sync</Text>
             </View>
-            <LinearGradient style={styles.button} colors={['#EA7F74', '#D9574A']}>
-                <TouchableOpacity onPress={() => {navigation.navigate("EndStream")}}>
-                    <Text style={styles.buttonText}>End Stream</Text>
-                </TouchableOpacity>
-            </LinearGradient>
         </View>
         </LinearGradient>
     );
 };
 
-const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 25,
         justifyContent: 'center',
+        alignItems: 'center',
     },
     logo: {
         position: 'absolute',
-        top: 50,
+        top: 59,
         left: 25,
         width: 130,
         height: 25,
-        resizeMode: 'contain',
+    },
+    header: {
+        position: 'absolute',
+        top: 16,
+        right: 16,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
     liveText: {
         top: 70,
@@ -165,12 +163,15 @@ const styles = StyleSheet.create({
         height: 20,
     },
     imageContainer: {
-        width: "100%",
+        position: 'absolute',
+        bottom: 225,
+        width: 300,
         height: 400,
         borderRadius: 5,
-        borderWidth: 8,
-        borderColor: '#000000',
-        marginBottom: 20
+        borderWidth: 1,
+        borderColor: 'gray',
+        backgroundColor: 'lightgray',
+        marginVertical: 16,
     },
     mainImage: {
         width: '100%',
@@ -231,8 +232,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.3)',
         width: '37.5%',
-        marginTop: "41%",
-        marginBottom: "133%",
+        marginTop: 85,
+        marginBottom: 441,
         left: "8.3%",
         borderTopLeftRadius: 5,
     },
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
         flex: 1,
         color: '#fff',
         textAlign: 'center',
-        top: "50%",
+        top: "40%",
     },
     flipMuteContainer: {
         position: 'absolute',
@@ -253,30 +254,60 @@ const styles = StyleSheet.create({
         width: 36,
         height: 80,
     },
+    effectsHeaderText: {
+        position: 'absolute',
+        bottom: 70,
+        left: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
     imageRow: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        flexWrap: 'wrap',
-        gap: 20,
-        marginTop: 20,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 16,
+        top: "57%"
     },
-    image: {
-        width: 70,
-        height: 70,
-        borderRadius: (windowWidth / 4 - 20) / 2,
-        bottom: 300,
-        margin: 0,
-        backgroundColor: "rgba(255, 255, 255, 0.28)"
+    effectImage: {
+        width: 55,
+        height: 55,
+        marginHorizontal: 12,
     },
-    iconText: {
-        color: "#E1E1E1",
+    chatText: {
+        position: 'absolute',
+        top: 210,
+        right: 106.2,
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
+    soundText: {
+        position: 'absolute',
+        top: 210,
+        right: 23,
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
+    effectsText: {
+        position: 'absolute',
+        top: 210,
+        left: 20,
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
+    cameraSyncText: {
+        position: 'absolute',
+        top: 210,
+        left: 85,
+        fontSize: 12,
+        fontWeight: 'bold',
     },
     button: {
-        padding: 10,
-        borderRadius: 10,
-        width: 150,
-        alignSelf: 'center',
-        marginTop: 50,
+        position: 'absolute',
+        backgroundColor: 'orange',
+        borderRadius: 5,
+        paddingVertical: 5,
+        paddingHorizontal: 20,
+        top: "90%"
     },
     buttonText: {
         color: 'white',
