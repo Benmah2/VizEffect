@@ -22,4 +22,11 @@ npm install expo-linear-gradient
 
 npm install axios
 
+npm install @react-navigation/bottom-tabs
+
+npx expo install react-native-gesture-handler
+
+npm install @react-navigation/native @react-navigation/native-stack
+
+
 NOTE: Man må ha en HTTPS kobling. Den jeg har brukt er Ngrok. Men du kan finne andre som fungerer også :) 
