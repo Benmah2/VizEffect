@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Image, Text, TouchableOpacity, Modal } from 'react-native';
 import { useAuthRequest, makeRedirectUri } from 'expo-auth-session';
+import * as WebBrowser from 'expo-web-browser';
 import { LinearGradient } from "expo-linear-gradient";
 import axios from 'axios';
+
+WebBrowser.maybeCompleteAuthSession();
 
 const discovery = {
     authorizationEndpoint: 'https://id.twitch.tv/oauth2/authorize',
